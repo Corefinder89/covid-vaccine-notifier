@@ -1,0 +1,25 @@
+name: Covid vaccine notification
+
+on:
+  schedule:
+    # Runs at 12am IST
+    - cron: '30 18 * * *'
+  workflow_dispatch:
+jobs:
+  build:
+    name: Trigger API job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+            fetch-depth: 0
+      - name: Set up python version
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      -name: Install package
+        run: pip install requests
+      - name: Run python code
+        run: python app/datacollector.py
