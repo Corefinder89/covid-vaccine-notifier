@@ -20,7 +20,7 @@ jobs:
           python-version: '3.x'
           architecture: 'x64'
       - name: Install package
-        run: pip install requests
+        run: pip install -r requirements.txt
       - name: Permissions
         run: chmod +x app/datacollector.py
       - name: Run python code

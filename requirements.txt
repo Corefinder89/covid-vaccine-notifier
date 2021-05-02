@@ -5,6 +5,5 @@
 #    pipenv lock --requirements
 #
 
--i https://pypi.org/simple
 http-request-randomizer==1.3.2
 requests==2.25.1
