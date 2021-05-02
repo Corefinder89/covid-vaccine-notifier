@@ -9,7 +9,8 @@ class Datacollector:
             endpoint = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin"
 
             querystring = {
-                "pincode": os.getenv("pincode"),
+                # "pincode": os.getenv("pincode"),
+                "pincode": 301703,
                 "date": "31-03-2021"
             }
 
