@@ -20,7 +20,7 @@ class Datacollector:
             }
 
             response = requests.request("GET", endpoint, data=payload, headers=headers, params=querystring)
-
+            print(response.status_code)
             print(response.json())
         except KeyError:
             print("Key not available")
