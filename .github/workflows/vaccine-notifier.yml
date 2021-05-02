@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: '3.x'
           architecture: 'x64'
-      -name: Install package
+      - name: Install package
         run: pip install requests
       - name: Run python code
         run: python app/datacollector.py
