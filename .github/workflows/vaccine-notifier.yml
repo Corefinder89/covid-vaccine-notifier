@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    name: Lint Code Base
+    name: Trigger API job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,7 +23,7 @@ jobs:
         run: pip install pipenv
       - name: Run pipenv sync
         run: pipenv sync
-      - name: Activate pipenv shell
-        run: pipenv shell
+      - name: Activate env
+        run: source $(pipenv --venv)/bin/activate
       - name: Run python code
         run: python app/datacollector.py
