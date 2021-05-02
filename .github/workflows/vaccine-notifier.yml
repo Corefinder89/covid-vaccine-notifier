@@ -23,5 +23,7 @@ jobs:
         run: pip install pipenv
       - name: Run pipenv sync
         run: pipenv sync
+      - name: Activate pipenv shell
+        run: pipenv shell
       - name: Run python code
         run: python app/datacollector.py
