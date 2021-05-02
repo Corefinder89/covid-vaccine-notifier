@@ -19,13 +19,7 @@ jobs:
         with:
           python-version: '3.x'
           architecture: 'x64'
-      - name: Install pipenv
-        run: pip install pipenv
-      - name: Create virtualenv
-        run: pipenv --three
-      - name: Activate virtual environment
-        run: source $(pipenv --venv)/bin/activate
-      - name: Run pipenv sync
-        run: pipenv sync
+      - name: Install packages
+        run: pipenv install
       - name: Run python code
         run: python app/datacollector.py
