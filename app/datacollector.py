@@ -12,7 +12,7 @@ class Datacollector:
         ind_proxies = []  # int is list of Indian proxy
         for proxy in proxies:
             if proxy.country == 'India':
-                ind.append(proxy.get_address())
+                ind_proxies.append(proxy.get_address())
 
         try:
             # public endpoint of cowin to find centres using pin code
