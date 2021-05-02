@@ -21,6 +21,8 @@ jobs:
           architecture: 'x64'
       - name: Install pipenv
         run:  pip install pipenv
+      - name: Activate shell
+        run: pipenv shell
       - name: Install packages
         run: pipenv install
       - name: Run python code
