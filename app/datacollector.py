@@ -21,8 +21,9 @@ class Datacollector:
             }
 
             response = requests.request("GET", endpoint, data=payload, headers=headers, params=querystring)
-            print(response.status_code)
-            print(response.json())
+            # print(response.status_code)
+            # print(response.json())
+            print(response.content.decode())
         except Exception as e:
             print(e)
 
