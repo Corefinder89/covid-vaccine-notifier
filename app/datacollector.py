@@ -11,7 +11,6 @@ class Datacollector:
 
             querystring = {
                 "pincode": os.getenv("pincode"),
-                # "pincode": 301703,
                 "date": "31-03-2021"
             }
 
@@ -24,8 +23,8 @@ class Datacollector:
             response = requests.request("GET", endpoint, data=payload, headers=headers, params=querystring)
             print(response.status_code)
             print(response.json())
-        except KeyError:
-            print("Key not available")
+        except Exception as e:
+            print(e)
 
 
 d = Datacollector()
