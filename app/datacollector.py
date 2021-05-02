@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import requests
 import os
 
@@ -9,8 +10,8 @@ class Datacollector:
             endpoint = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin"
 
             querystring = {
-                # "pincode": os.getenv("pincode"),
-                "pincode": 301703,
+                "pincode": os.getenv("pincode"),
+                # "pincode": 301703,
                 "date": "31-03-2021"
             }
 

@@ -21,5 +21,7 @@ jobs:
           architecture: 'x64'
       - name: Install package
         run: pip install requests
+      - name: Permissions
+        run: chmod +x app/datacollector.py
       - name: Run python code
         run: python app/datacollector.py
