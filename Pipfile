@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 requests = "*"
+http-request-randomizer = "*"
 
 [dev-packages]
 
