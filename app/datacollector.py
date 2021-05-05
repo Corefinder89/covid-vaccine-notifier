@@ -24,7 +24,8 @@ class Datacollector:
             }
 
             proxy = {
-                "http": "http://"+str(random.choice(ind_proxies))
+                "http": "http://"+str(random.choice(ind_proxies)),
+                "https": "http://"+str(random.choice(ind_proxies))
             }
 
             headers = {
@@ -33,6 +34,7 @@ class Datacollector:
             }
 
             response = requests.request("GET", endpoint, headers=headers, params=querystring, proxies=proxy)
+            print(response.status_code)
             print(response.json())
         except Exception as e:
             print(e)
