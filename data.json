@@ -1,5 +1,10 @@
 {
-    "details":{
+    "details": {
         "pincode": [560078, 301703]
+    },
+    "notification": {
+        "recipients": ["soumyajit.basu62@gmail.com","soumipal02@gmail.com"],
+        "from": "soumyajitbasu1988@gmail.com",
+        "subject": "Covid center information for following pincode/pincodes"
     }
 }
