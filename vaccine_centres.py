@@ -118,10 +118,11 @@ def notification_mailer(sender, recipients, subject, data):
     
     # Credentials
     username = os.getenv("user_email")
-    password = os.getenv("user_password") 
+    password = os.getenv("user_password")
+    port = os.getenv("smtp_port") 
     
     # Sending the email
-    server = smtplib.SMTP('smtp.gmail.com', 587) 
+    server = smtplib.SMTP('smtp.gmail.com', port) 
     server.ehlo()
     server.starttls()
     server.login(username,password)  
