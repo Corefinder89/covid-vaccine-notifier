@@ -7,6 +7,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+
 # Main function to run the functions
 def run_api():
     # Store the dictionary object within the list accumulated_data
@@ -29,9 +30,10 @@ def run_api():
     recipients = get_json_info("notification", "recipients")
     # Get the subject of the email
     subject = get_json_info("notification", "subject")
-    
+
     # notify the user with response
     notification_mailer(sender, recipients, subject, accumulated_data)
+
 
 # API code to fetch data from api setu
 def fetch_data_api(zip_code, date):
@@ -44,7 +46,8 @@ def fetch_data_api(zip_code, date):
         'Accept-language': "hi_IN",
     }
 
-    conn.request("GET", f"/api/v2/appointment/sessions/public/findByPin?pincode={zip_code}&date={date}", payload, headers)
+    conn.request("GET", f"/api/v2/appointment/sessions/public/findByPin?pincode={zip_code}&date={date}", payload,
+                 headers)
 
     res = conn.getresponse()
 
@@ -53,6 +56,7 @@ def fetch_data_api(zip_code, date):
         return data.decode("utf-8")
     else:
         return res.reason
+
 
 # Data handler code to manipulate and cherry pick data from json
 def data_handler(data):
@@ -75,22 +79,23 @@ def data_handler(data):
             covid_center_info.update({"age_limit": data.get("min_age_limit")})
             covid_center_info.update({"vaccine_type": data.get("vaccine")})
             covid_center_info.update({"slots": data.get("slots")})
-        
+
         # return data in dictionary
         return covid_center_info
     else:
         # return data in dictionary if list is empty
         covid_center_info.update({"message": "No data present currently"})
-        
+
         return covid_center_info
+
 
 # Create json file reader object
 def get_json_info(parent_obj, child_obj):
     jsondata = ""
-    
+
     with open("data.json", "r") as jsonobj:
         jsondata = json.load(jsonobj)
-    
+
     try:
         return jsondata.get(parent_obj).get(child_obj)
     except KeyError:
@@ -101,32 +106,33 @@ def get_json_info(parent_obj, child_obj):
 def notification_mailer(sender, recipients, subject, data):
     from_address = sender
     to_address = recipients
-    
+
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
     msg['Subject'] = subject
     msg['From'] = sender
     msg['To'] = ", ".join(recipients)
-    
+
     # Create the message (HTML).
     html = ' '.join([str(elem) for elem in data])
     # Record the MIME type - text/html.
     part1 = MIMEText(html, 'html')
-    
+
     # Attach parts into message container
     msg.attach(part1)
-    
+
     # Credentials
     username = os.getenv("user_email")
     password = os.getenv("user_password")
-    port = os.getenv("smtp_port") 
-    
+    port = os.getenv("smtp_port")
+
     # Sending the email
-    server = smtplib.SMTP('smtp.gmail.com', port) 
+    server = smtplib.SMTP('smtp.gmail.com', port)
     server.ehlo()
     server.starttls()
-    server.login(username,password)  
-    server.sendmail(from_address, to_address, msg.as_string())  
+    server.login(username, password)
+    server.sendmail(from_address, to_address, msg.as_string())
     server.quit()
+
 
 run_api()
