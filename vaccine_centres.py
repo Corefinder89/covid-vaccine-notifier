@@ -6,6 +6,7 @@ from datetime import date
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from dotenv import load_dotenv
 
 
 # Main function to run the functions
@@ -104,6 +105,8 @@ def get_json_info(parent_obj, child_obj):
 
 # Mailer code to send notifications
 def notification_mailer(sender, recipients, subject, data):
+    load_dotenv()
+
     from_address = sender
     to_address = recipients
 
