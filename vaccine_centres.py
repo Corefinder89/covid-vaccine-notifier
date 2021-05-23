@@ -9,6 +9,14 @@ from email.mime.text import MIMEText
 from dotenv import load_dotenv
 
 
+def lambda_handler(event, context):
+    run_api()
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Successfully deployed to lambda')
+    }
+
+
 # Main function to run the functions
 def run_api():
     # Store the dictionary object within the list accumulated_data
@@ -136,6 +144,3 @@ def notification_mailer(sender, recipients, subject, data):
     server.login(username, password)
     server.sendmail(from_address, to_address, msg.as_string())
     server.quit()
-
-
-run_api()

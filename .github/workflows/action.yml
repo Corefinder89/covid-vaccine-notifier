@@ -14,9 +14,9 @@ jobs:
       - uses: actions/checkout@master
       - name: set environment variables
         run: |
-            touch .env
-            echo "USER_EMAIL=${{secrets.API_KEY}}" >> .env
-            echo "USER_PASSWORD=${{secrets.API_KEY}}" >> .env
+          touch .env
+          echo "USER_EMAIL=${{secrets.API_KEY}}" >> .env
+          echo "USER_PASSWORD=${{secrets.API_KEY}}" >> .env
       - name: Deploy code to Lambda
         uses: qubitro/action-lambda-python-zip@v1.0
         with:
