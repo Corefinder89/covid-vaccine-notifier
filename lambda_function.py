@@ -144,3 +144,6 @@ def notification_mailer(sender, recipients, subject, data):
     server.login(username, password)
     server.sendmail(from_address, to_address, msg.as_string())
     server.quit()
+
+
+run_api()
