@@ -125,8 +125,8 @@ def notification_mailer(sender, recipients, subject, data):
     msg.attach(part1)
 
     # Credentials
-    username = os.getenv("user_email")
-    password = os.getenv("user_password")
+    username = os.getenv("USER_EMAIL")
+    password = os.getenv("USER_PASSWORD")
     port = os.getenv("smtp_port")
 
     # Sending the email
