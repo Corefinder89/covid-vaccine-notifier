@@ -1,0 +1,28 @@
+name: Deploy code to aws lambda
+
+on:
+  schedule:
+    # Runs as 12 am IST
+    - cron: '30 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+      - uses: actions/checkout@master
+      - name: set environment variables
+        run: |
+            touch .env
+            echo "USER_EMAIL=${{secrets.API_KEY}}" >> .env
+            echo "USER_PASSWORD=${{secrets.API_KEY}}" >> .env
+      - name: Deploy code to Lambda
+        uses: qubitro/action-lambda-python-zip@v1.0
+        with:
+          lambda_layer_arn: ${{ secrets.LAMBDA_LAYER_ARN }}
+          lambda_function_name: ${{ secrets.LAMBDA_FUNCTION_NAME }}
+          lambda_region: ${{ secrets.REGION }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
